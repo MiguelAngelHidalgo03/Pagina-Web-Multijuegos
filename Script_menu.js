@@ -3,7 +3,7 @@ function cambiarSeccion(seccion) {
     switch(seccion) {
         case 'juego1':
             // Redirige a la página del juego Tres en Raya
-            window.location.href = "TresEnRaya.html";
+            window.location.href = "TresEnRaya/TresEnRaya.html";
             break;
         case 'juego2':
             // Muestra un mensaje para el juego 2 en desarrollo
