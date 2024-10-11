@@ -121,8 +121,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     volverMenu.addEventListener("click", function() {
 
-    window.location.href = "https://miguelangelhidalgo03.github.io/Pagina-Web-Multijuegos/";
-    
+    window.location.href = "https://miguelangelhidalgo03.github.io/Pagina-Web-Multijuegos";
+
 });
 
 });
