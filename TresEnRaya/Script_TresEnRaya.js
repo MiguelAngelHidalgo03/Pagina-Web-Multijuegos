@@ -120,7 +120,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const volverMenu = document.getElementById("volverMenu");
 
     volverMenu.addEventListener("click", function() {
-        window.location.href = "/index.html";
+        const origin = window.location.origin;
+    
+        if (origin.includes("github.io")) {
+            window.location.href = "https://miguelangelhidalgo03.github.io/Pagina-Web-Multijuegos/";
+        } else {
+            window.location.href = "/index.html";
+        }
     });
     
 });
