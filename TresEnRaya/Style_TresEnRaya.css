@@ -162,30 +162,48 @@ button:hover {
     text-align: center;
 }
 
-/* Jugadores */
+.modal-content h2 {
+    font-size: 35px;
+    color: #998650;
+}
+
+.modal-content label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    text-align: left;
+}
+
 .jugadores {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+    justify-content: space-between;
+    margin-top: 10px;
     flex-wrap: wrap;
 }
 
 .jugador {
-    text-align: left;
+    display: flex;
+    flex-direction: column; /* Cambia a columna para alinear verticalmente */
     flex: 1;
-    padding: 0 10px;
+    min-width: 200px; /* Añade un ancho mínimo para mantener la proporción */
+    padding: 10px;
+}
+
+.jugador h3 {
+    margin-bottom: 10px; /* Espacio entre el título y los labels */
 }
 
 .jugador label {
-    display: inline-block;
-    margin-right: 10px;
-    width: 80px;
-    text-align: right;
+    margin-bottom: 5px; /* Espacio entre el label y el input/select */
+    text-align: left; /* Alinea el texto a la izquierda */
 }
 
-.jugador select, .jugador input[type="color"] {
-    margin-left: 10px;
+.jugador select,
+.jugador input[type="color"],
+.jugador input[type="text"] {
+    margin-top: 5px; /* Espacio entre el label y el input/select */
 }
+
 
 #guardarCambios {
     background-color: #998650;
@@ -207,10 +225,7 @@ button:hover {
     margin-left: 30px;
 }
 
-.modal-content h2 {
-    font-size: 35px;
-    color: #998650;
-}
+
 
 /* Botón de cierre (X) */
 .close {
@@ -227,8 +242,14 @@ button:hover {
     cursor: pointer;
 }
 
+
+
+
+
+
+
 /* Media Queries */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
     /* Reducir tamaño de las celdas y fuente en dispositivos móviles */
     .board {
         grid-template-columns: repeat(3, 80px);
@@ -239,7 +260,7 @@ button:hover {
     .cell {
         width: 80px;
         height: 80px;
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     /* Ajustar el tamaño del texto */
@@ -253,7 +274,7 @@ button:hover {
 
     /* Ajustar botones */
     button {
-        font-size: 1rem;
+        font-size: 1.2rem;
         padding: 8px 15px;
     }
 
@@ -264,23 +285,40 @@ button:hover {
 
     /* Tabla de resultados más pequeña */
     #tablaResult {
-        width: 80px;
-        height: 80px;
-        font-size: 14px;
+        position: fixed;
     }
 
-    /* Alinear los jugadores verticalmente en pantallas pequeñas */
-    .jugadores {
-        flex-direction: column;
-        align-items: center;
+    #tablaResult th {
+        font-size: 13px;
     }
 
-    .jugador {
-        width: 100%;
-        text-align: center;
+    #opcionesModal {
+        width: 365px;
+        height: 300px;
+        font-size: 12px;
+        position: fixed;
+    }
+    
+    button:hover {
+        background-color: #3498db; /* Mantener el color original del botón */
     }
 
-    .jugador label {
-        width: auto;
+    #volverMenu:hover, #menuResult:hover, #opciones:hover {
+        background-color: #998650;
     }
+
+    .modal-content h2 {
+        font-size: 30px;
+        color: #998650;
+    }
+
+    .modal-content {
+        margin: 5px auto;
+        padding: 21px;
+    }
+
+    .modal-content h3 {
+        font-size: 25px;
+    }
+
 }

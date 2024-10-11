@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const volverMenu = document.getElementById("volverMenu");
 
     volverMenu.addEventListener("click", function() {
-        window.location.href = "/index.html";
+        window.location.href = "/TresEnRaya/index.html";
     });
 });
 
