@@ -7,7 +7,7 @@ function cambiarSeccion(seccion) {
             break;
         case 'juego2':
             // Muestra un mensaje para el juego 2 en desarrollo
-            contenido.innerHTML = '<p>Juego 2 en desarrollo...</p>';
+            window.location.href = "BlackJack/BlackJack.html";
             break;
         case 'opciones':
             // Muestra las opciones

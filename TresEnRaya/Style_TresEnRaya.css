@@ -64,9 +64,197 @@ button:hover {
 }
 
 .x {
-    color: rgb(0, 200, 255); /* Color de X */
+    /* color: rgb(0, 200, 255); Color de X */
 }
 
 .o {
-    color: rgb(102, 255, 0); /* Color de O */
+    /* color: rgb(102, 255, 0); Color de O */
+}
+
+#volverMenu {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #998650;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#volverMenu:hover {
+    background-color: #7a6821;
+}
+
+#menuResult {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #998650;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#menuResult:hover {
+    background-color: #7a6821;
+}
+
+
+#tablaResult {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: #9D8189;
+    padding: 15px 30px;
+    border-radius: 8px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    height: 100px;
+}
+
+
+#tablaResult th, #tablaResult td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+#tablaResult th {
+    background-color: #634252;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#tablaResult tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#tablaResult td {
+    font-size: 16px;
+}
+
+#tablaResult tbody tr:last-child td {
+    border-bottom: none;
+}
+
+#opciones {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #998650;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#opciones:hover {
+    background-color: #7a6821;
+}
+
+/* Fondo del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #2e3b4e;
+    color: #f0f0f0;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    max-width: 600px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    text-align: center;
+}
+
+/* Botón de cierre (X) */
+.close {
+    color: #d4af37;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #ffcc00;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estructura de los jugadores */
+.jugadores {
+    display: flex;
+    justify-content: space-around; /* Distribuye los jugadores a los lados */
+    margin-top: 20px;
+}
+
+/* Estilo para cada jugador */
+.jugador {
+    text-align: left;
+    flex: 1;
+    padding: 0 10px;
+}
+
+/* Alineación de los labels y selects */
+.jugador label {
+    display: inline-block;
+    margin-right: 10px;
+    width: 80px;
+    text-align: right;
+}
+
+.jugador select, .jugador input[type="color"] {
+    margin-left: 10px;
+}
+
+#guardarCambios {
+    background-color: #998650;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#guardarCambios:hover {
+    background-color: #7a6821;
+}
+
+/* Aumentar el tamaño de la letra de los títulos de los jugadores */
+.jugador h3 {
+    font-size: 25px;
+    margin-left: 30px;
+}
+
+/* Aumentar el tamaño del título de Opciones */
+.modal-content h2 {
+    font-size: 35px;
+    color: #998650;
 }

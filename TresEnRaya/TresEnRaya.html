@@ -8,6 +8,7 @@
     
 </head>
 <body>
+    
     <div class="game-container">
         <h1>Tres en Raya</h1>
         <div class="board" id="board">
@@ -21,10 +22,98 @@
             <div class="cell" data-cell></div>
             <div class="cell" data-cell></div>
         </div>
-        <button id="restartButton">Reiniciar Juego</button>
+        <button id="restartButton">Reiniciar</button>
         <p id="message"></p>
     </div>
 
-    <script src="Script_TresEnRaya.js"></script>
+    <button id="volverMenu">Volver a la Página Principal</button>
+    
+    <button id="menuResult">Resultados</button>
+    <table id="tablaResult" style="display: none;">
+        <thead>
+            <tr>
+                <th id="nombreJ1Mostrar">Jugador 1</th>
+                <th>Empates</th>
+                <th id="nombreJ2Mostrar">Jugador 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="victoriasX"></td>
+                <td id="empates"></td>
+                <td id="victoriasO"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <button id="opciones">Opciones</button>
+
+    <div id="opcionesModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Opciones</h2>
+    
+        <div class="jugadores">
+          <div class="jugador">
+            <h3>Jugador 1</h3>
+            <label for="formaX">Forma:</label>
+            <select id="formaX">
+              <option value="X">X</option>
+              <option value="△">Triángulo</option>
+              <option value="★">Estrella</option>
+              <option value="✦">Diamante sólido</option>
+              <option value="□">Cuadrado</option>
+              <option value="◆">Rombo</option>
+              <option value="♣">Trébol</option>
+              <option value="✖">Cruz</option>
+              <option value="❖">Diamante</option>
+            </select>
+            <br>
+            <label for="colorX">Color:</label>
+            <input type="color" id="colorX" value="#FF0000">
+            <br>
+            <br>
+            <label for="colorX">Cambiar nombre:</label>
+            <input type="text" id="nombreJ1">
+          </div>
+    
+          <div class="jugador">
+            <h3>Jugador 2</h3>
+            <label for="formaO">Forma:</label>
+            <select id="formaO">
+              <option value="O">O</option>
+              <option value="✿">Flor</option>
+              <option value="⬤">Punto</option>
+              <option value="✪">Estrella en círculo</option>
+              <option value="⬟">Hexágono</option>
+              <option value="⬢">Hexágono sólido</option>
+              <option value="♥">Corazón</option>
+              <option value="❂">Rayo de sol</option>
+              <option value="♠">Pica (de naipes)</option>
+              <option value="○">Círculo</option>
+            </select>
+            <br>
+            <label for="colorO">Color:</label>
+            <input type="color" id="colorO" value="#0000FF">
+            <br>
+            <br>
+            <label for="colorX">Cambiar nombre:</label>
+            <input type="text" id="nombreJ2">
+          </div>
+        </div>
+    
+        <button id="guardarCambios">Guardar Cambios</button>
+      </div>
+    </div>
+    
+
+<script src="Script_TresEnRaya.js"></script>
+
+
+
+
+    
 </body>
 </html>
