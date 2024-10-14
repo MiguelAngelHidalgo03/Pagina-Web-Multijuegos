@@ -13,14 +13,18 @@ let formaO = "O";  // Valor por defecto para la forma de O
 let colorX = "#FF0000";  // Valor por defecto para el color de X (rojo)
 let colorO = "#0000FF";  // Valor por defecto para el color de O (azul)
 
+//Variable menu para que no tengan el mismo emote
+const formaXSelect = document.getElementById("formaX");
+const formaOSelect = document.getElementById("formaO");
+
 // const nombreJ1 = document.getElementById("nombreJ1");
 // const nombreJ2 = document.getElementById("nombreJ2");
 
 // nombreJ1.value = "Jugador1";
 // nombreJ2.value = "Jugador2";
 
-let nombreJ1 = "Jugador1";
-let nombreJ2 = "Jugador2";
+let nombreJ1 = "Jugador 1";
+let nombreJ2 = "Jugador 2";
 
     
 const estadoTablero = ["", "", "", "", "", "", "", "", ""]; // Estado del tablero
@@ -36,18 +40,19 @@ const patronWinner = [
     [2, 4, 6]  // Diagonal
 ];
 
-message.innerHTML = "Turno de jugador 1";
+//Funcionalidad del juego
+message.innerHTML = `Turno: ${nombreJ1}`;
 for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function(ev) {
         if (this.innerHTML === "") { // Verifica si la celda está vacía
             if (turnX) {
                 this.innerHTML = `<span class='x' style="color: ${colorX};">${formaX}</span>`;  // Muestra "X" con la clase
                 estadoTablero[i] = "X"; // Guarda "X" en el estado del tablero
-                message.innerHTML = `Turno de ${nombreJ2}`;
+                message.innerHTML = `Turno: ${nombreJ2}`;
             } else {
                 this.innerHTML = `<span class='o' style="color: ${colorO};">${formaO}</span>`;  // Muestra "O" con la clase
                 estadoTablero[i] = "O";
-                message.innerHTML = `Turno de ${nombreJ1}`;
+                message.innerHTML = `Turno: ${nombreJ1}`;
             }
             ganador();
             turnX = !turnX; // Cambia de turno
@@ -56,24 +61,8 @@ for (let i = 0; i < cells.length; i++) {
 }
 
     
-
-
-// Funcionalidad de reinicio
-restartButton.addEventListener("click", function() {
-    for (let cell of cells) {
-        cell.innerHTML = ""; // Limpia el contenido de todas las celdas
-    }
-    turnX = true; // Reinicia el turno
-    message.innerHTML = ""; // Limpia el mensaje
-    message.innerHTML = `Turno de ${nombreJ1}`;
-    for (let i = 0; i < estadoTablero.length; i++) {
-        estadoTablero[i] = ""; // Limpia el estado del tablero
-    }
-    cellsBloq.forEach(cellsBloq => {
-        cellsBloq.style.pointerEvents = "auto"; // Activa los clics en la celda después de reiniciar
-    });
-});
-
+//Eliminar boton reinicio hasta que la partida haya finalizado (ganar, perder, empate)
+restartButton.style.display = "none";
 
 // Función para verificar el ganador
 function ganador() {
@@ -85,17 +74,28 @@ function ganador() {
 
         // Comprueba si hay un ganador
         if (estadoTablero[a] === estadoTablero[b] && estadoTablero[a] === estadoTablero[c] && estadoTablero[a] !== "") {
+
+            //Resaltar las celdas ganadoras
+            cells[a].classList.add("celda-ganadora");
+            cells[b].classList.add("celda-ganadora");
+            cells[c].classList.add("celda-ganadora");
+
+            //Mostrar boton reiniciar
+            restartButton.style.display = "block";
+
             if (estadoTablero[a] === "X") 
             {
                 victoriasX++;
                 document.getElementById("victoriasX").innerHTML = victoriasX;
-                message.innerHTML = `¡${nombreJ1} ha ganado!`; // Muestra el mensaje de victoria
+                message.innerHTML = `¡${nombreJ1} ha ganado!`;
+                turnX = true;
             }
             if (estadoTablero[a] === "O")
             {
                 victoriasO++;
                 document.getElementById("victoriasO").innerHTML = victoriasO;
-                message.innerHTML = `¡${nombreJ2} ha ganado!`; // Muestra el mensaje de victoria
+                message.innerHTML = `¡${nombreJ2} ha ganado!`;
+                turnX = false;
             }
             cellsBloq.forEach(cellsBloq => {
                 cellsBloq.style.pointerEvents = "none"; // Desactiva los clics en la celda
@@ -109,11 +109,61 @@ function ganador() {
         message.innerHTML = "¡Es un empate!";
         empates++;
         document.getElementById("empates").innerHTML = empates;
+
+        //Mostrar boton reiniciar
+        restartButton.style.display = "block";
+
+        let numAleatorioTurno = Math.round(Math.random()); //Variable en empate para decidir quien juega
+        if (numAleatorioTurno === 0) {
+            turnX = false;
+        }   
+        else {
+            turnX = true;
+        }
+
         cellsBloq.forEach(cellsBloq => {
             cellsBloq.style.pointerEvents = "none"; // Activa los clics en la celda después de reiniciar
         });
     }
 }
+
+
+// Funcionalidad de reinicio
+restartButton.addEventListener("click", function() {
+    for (let cell of cells) {
+        cell.innerHTML = ""; // Limpia el contenido de todas las celdas
+    }
+    message.innerHTML = ""; // Limpia el mensaje
+    for (let i = 0; i < estadoTablero.length; i++) {
+        estadoTablero[i] = ""; // Limpia el estado del tablero
+    }
+    cellsBloq.forEach(cellsBloq => {
+        cellsBloq.style.pointerEvents = "auto"; // Activa los clics en la celda después de reiniciar
+    });
+    
+    //Mostrar mensaje despues de boton restart y empate
+    if (!turnX) 
+    {
+        message.innerHTML = `Turno: ${nombreJ2}`;
+    }
+    else
+    {
+        message.innerHTML = `Turno: ${nombreJ1}`;
+    }
+
+
+    //Quitar remarcado cuando se reincia
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].classList.remove("celda-ganadora");
+    }
+
+    //Eliminar boton reinicio hasta que la partida haya finalizado (ganar, perder, empate)
+    restartButton.style.display = "none";
+
+
+});
+
+
 
 //Boton volver al menu. DOMContentLoaded para que funcione lo primero!
 document.addEventListener("DOMContentLoaded", function() {
@@ -142,10 +192,12 @@ document.getElementById("menuResult").addEventListener("click", function() {
 
 document.getElementById("formaX").addEventListener("change", function() {
     formaX = this.value;
+    actualizarOpcionesJugador2();
 });
 
 document.getElementById("formaO").addEventListener("change", function() {
     formaO = this.value;
+    actualizarOpcionesJugador1();
 });
 
 document.getElementById("colorX").addEventListener("input", function() {
@@ -158,6 +210,47 @@ document.getElementById("colorO").addEventListener("input", function() {
 
 
 this.innerHTML = `<span class='x' style="color: ${colorX};">${formaX}</span>`; 
+
+
+
+// Función para actualizar las opciones del Jugador 2
+function actualizarOpcionesJugador2() {
+    const seleccionJ1 = formaXSelect.value;
+
+    // Habilitar todas las opciones en el select del Jugador 2
+    for (let option of formaOSelect.options) {
+        option.disabled = false; // Habilita todas las opciones
+    }
+
+    // Deshabilitar la opción seleccionada por el Jugador 1 en el select del Jugador 2
+    for (let option of formaOSelect.options) {
+        if (option.value === seleccionJ1) {
+            option.disabled = true; // Deshabilita la opción si es igual a la de Jugador 1
+        }
+    }
+}
+
+// Función para actualizar las opciones del Jugador 1
+function actualizarOpcionesJugador1() {
+    const seleccionJ2 = formaOSelect.value;
+
+    // Habilitar todas las opciones en el select del Jugador 1
+    for (let option of formaXSelect.options) {
+        option.disabled = false; // Habilita todas las opciones
+    }
+
+    // Deshabilitar la opción seleccionada por el Jugador 2 en el select del Jugador 1
+    for (let option of formaXSelect.options) {
+        if (option.value === seleccionJ2) {
+            option.disabled = true; // Deshabilita la opción si es igual a la de Jugador 2
+        }
+    }
+}
+
+// Inicializar las opciones al cargar la página
+actualizarOpcionesJugador2();
+actualizarOpcionesJugador1();
+
 
 
 
@@ -218,19 +311,29 @@ document.getElementById("guardarCambios").addEventListener("click", function() {
     nombreJ1 = document.getElementById("nombreJ1").value;
     nombreJ2 = document.getElementById("nombreJ2").value;
 
+
+    // Si el nombre es solo espacio en blanco se cambia al nombre predeterminado
+    if (nombreJ1 === "") {
+        nombreJ1 = "Jugador 1";
+    }
+
+    if (nombreJ2 === "") {
+        nombreJ2 = "Jugador 2";
+    }
+
     document.getElementById("nombreJ1Mostrar").textContent = nombreJ1;
     document.getElementById("nombreJ2Mostrar").textContent = nombreJ2;
 
     //Para que se actualice al momento
     if (turnX) {
-        message.innerHTML = `Turno de ${nombreJ1}`;
+        message.innerHTML = `Turno: ${nombreJ1}`;
     }
     else{
-        message.innerHTML = `Turno de ${nombreJ2}`;
+        message.innerHTML = `Turno: ${nombreJ2}`;
     }
+    
+
     
     
 
 });
-
-

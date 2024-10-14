@@ -90,6 +90,7 @@ button:hover {
     right: 10px;
 }
 
+
 #opciones {
     bottom: 10px;
     right: 10px;
@@ -112,7 +113,7 @@ button:hover {
     font-family: Arial, sans-serif;
     font-size: 18px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100px;
+    width: 500px;
     height: 100px;
 }
 
@@ -124,7 +125,7 @@ button:hover {
 
 #tablaResult th {
     background-color: #634252;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -134,7 +135,7 @@ button:hover {
 }
 
 #tablaResult td {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Modal */
@@ -243,12 +244,27 @@ button:hover {
 }
 
 
+/* Cambia el fondo de las celdas ganadoras */
+.celda-ganadora {
+    background-color: #9D8189;
+    animation: blink 1.5s step-start infinite; /* Añadir animación de parpadeo */
+}
+
+/* Animación para el parpadeo */
+@keyframes blink {
+    50% { background-color: #8e6e77; } /* Cambia a otro color durante el parpadeo */
+}
+
+ /* Centrar el boton cuando desaparezca y vuelva a aparecer */
+#restartButton {
+    display: block;
+    margin: 0 auto;
+}
 
 
 
 
-
-/* Media Queries */
+/* Media Queries, para moviles, tablets, etc*/
 @media (max-width: 800px) {
     /* Reducir tamaño de las celdas y fuente en dispositivos móviles */
     .board {
@@ -322,3 +338,4 @@ button:hover {
     }
 
 }
+
