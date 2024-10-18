@@ -302,10 +302,12 @@ button:hover {
     /* Tabla de resultados más pequeña */
     #tablaResult {
         position: fixed;
+        width: 360px;
+        height: 100px;
     }
 
     #tablaResult th {
-        font-size: 13px;
+        font-size: 11px;
     }
 
     #opcionesModal {
