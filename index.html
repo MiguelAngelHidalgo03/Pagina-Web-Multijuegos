@@ -8,17 +8,22 @@
     <script src="Script_menu.js"></script>
 </head>
 <body>
-    <div class="menu">
-        <h1>Bienvenido al menú de juegos</h1>
-        <button onclick="cambiarSeccion('juego1')">Tres en Raya</button>
-        <button onclick="cambiarSeccion('juego2')">BlackJack</button>
-        <button onclick="cambiarSeccion('opciones')">Opciones</button>
-    </div>
-
-    <div id="contenido" class="contenido">
-        <p>Selecciona una opción del menú</p>
-    </div>
-
-    
+    <header>
+        <h1>Menú de Juegos Online</h1>
+    </header>
+    <main>
+        <section class="menu">
+            <h2>Selecciona un juego:</h2>
+            <button onclick="cambiarSeccion('juego1')" aria-label="Ir a Tres en Raya">Tres en Raya</button>
+            <button onclick="cambiarSeccion('juego2')" aria-label="Ir a BlackJack">BlackJack</button>
+            <button onclick="cambiarSeccion('opciones')" aria-label="Ir a Opciones">Opciones</button>
+        </section>
+        <section id="contenido" class="contenido">
+            <p>Selecciona una opción del menú para comenzar.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Menú de Juegos Online. Creado por Miguel Ángel Hidalgo Martínez.</p>
+    </footer>
 </body>
 </html>

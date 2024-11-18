@@ -1,21 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlackJack</title>
+    <title>Blackjack - Un Jugador</title>
     <link rel="stylesheet" href="Style_bj.css">
-    <script defer src="Script_BlackJack.js"></script>
-
+    <script src="Script_blackjack.js" defer></script>
 </head>
 <body>
-    <h1>BlackJack</h1>
-    <div class="container">
-        <div class="buttons">
-            <button id="button1">Pedir carta</button>
-            <button id="button2">Plantarse</button>
+    <header>
+        <h1>Blackjack</h1>
+    </header>
+    <main>
+        <div class="game-board">
+            <div class="dealer">
+                <h2>Crupier</h2>
+                <div id="dealer-cards" class="card-container"></div>
+            </div>
+            <div class="player">
+                <h2>Jugador</h2>
+                <div id="player-cards" class="card-container"></div>
+            </div>
         </div>
-    </div>
-    <textarea id="salidaTA"></textarea>
+        <div class="status">
+            <p id="game-status">Realiza tu apuesta para comenzar</p>
+        </div>
+    </main>
+    <footer>
+        <div class="betting-bar">
+            <div class="bet-options">
+                <button onclick="placeBet(1)">1</button>
+                <button onclick="placeBet(5)">5</button>
+                <button onclick="placeBet(10)">10</button>
+                <button onclick="placeBet(25)">25</button>
+                <button onclick="placeBet(100)">100</button>
+                <button onclick="placeBet(200)">200</button>
+            </div>
+            <div class="player-info">
+                <p>Dinero disponible: <span id="player-money">1000</span>€</p>
+                <p>Apuesta actual: <span id="current-bet">0</span>€</p>
+            </div>
+            <div class="action-buttons">
+                <button onclick="dealCards()">Repartir</button>
+                <button onclick="hit()">Pedir</button>
+                <button onclick="stand()">Plantarse</button>
+                <button onclick="doubleBet()">Doblar</button>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

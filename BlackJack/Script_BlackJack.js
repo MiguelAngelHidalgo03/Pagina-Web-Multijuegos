@@ -1,52 +1,54 @@
-const button1 = document.getElementById("button1");
-const button2 = document.getElementById("button2");
-const salidaTA = document.getElementById("salidaTA");
-let puntuaje = 0;
+let playerMoney = 1000;
+let currentBet = 0;
 
-button1.addEventListener("click", function(ev) 
-{
-        const nuevaCarta = Math.floor(Math.random() * 10) + 1;
-        puntuaje += nuevaCarta;
+function placeBet(amount) {
+    if (amount > playerMoney) {
+        alert("No tienes suficiente dinero para esta apuesta.");
+        return;
+    }
+    currentBet += amount;
+    playerMoney -= amount;
+    updateUI();
+}
 
-        if (puntuaje <= 20) 
-        {
-            salidaTA.value = "Tu carta es " + nuevaCarta + ". Total puntos: " + puntuaje + "\n" + "¿Desea escoger otra carta?";
-        } 
-        else if (puntuaje === 21) 
-        {
-            salidaTA.value = "¡Felicidades! Llegaste a 21 puntos. Has ganado." + "\nPida otra carta si quieres jugar de nuevo";
-            puntuaje = 0;
-        } 
-        else 
-        {
-            salidaTA.value = "Te has pasado de 21 puntos. Has perdido.\nTotal puntos: " + puntuaje + "\nPida otra carta si quieres jugar de nuevo";
-            puntuaje = 0;
-        }
-});
+function updateUI() {
+    document.getElementById("player-money").textContent = playerMoney;
+    document.getElementById("current-bet").textContent = currentBet;
+}
 
-button2.addEventListener("click", function(ev) 
-{
-            const cartaPC = Math.floor(Math.random() * 8) + 14;
-            if (cartaPC > puntuaje) {
-                salidaTA.value = "Perdiste. Tu contrincante tiene " + cartaPC + " puntos, y tú tienes " + puntuaje + " puntos." + "\nPida otra carta si quieres jugar de nuevo";
-            } else if (cartaPC < puntuaje) {
-                salidaTA.value = "Ganaste. Tu contrincante tiene " + cartaPC + " puntos, y tú tienes " + puntuaje + " puntos." + "\nPida otra carta si quieres jugar de nuevo";
-            } else {
-                salidaTA.value = "Empate. Ambos tienen " + puntuaje + " puntos." + "\nPida otra carta si quieres jugar de nuevo";
-            }
-            puntuaje = 0;  
-});
+function dealCards() {
+    if (currentBet === 0) {
+        alert("Debes realizar una apuesta antes de repartir las cartas.");
+        return;
+    }
+    // Simular reparto de cartas (añadir imágenes dinámicas después)
+    document.getElementById("player-cards").innerHTML = `
+        <img src="cartas/ace_of_spades.png" alt="Carta">
+        <img src="cartas/king_of_hearts.png" alt="Carta">
+    `;
+    document.getElementById("dealer-cards").innerHTML = `
+        <img src="cartas/queen_of_diamonds.png" alt="Carta">
+        <img src="cartas/back.png" alt="Carta"> <!-- Reverso de carta -->
+    `;
+    document.getElementById("game-status").textContent = "Elige tu siguiente movimiento.";
+}
 
+function hit() {
+    // Lógica para pedir una carta
+    alert("Pedir carta no implementado aún.");
+}
 
+function stand() {
+    // Lógica para plantarse
+    alert("Plantarse no implementado aún.");
+}
 
-/* 
-
-Deshabilitar botones: Asegúrate de que, cuando termine el juego (victoria, derrota o empate), los botones "Pedir carta" y 
-"Plantarse" se deshabiliten automáticamente, para evitar que el jugador siga interactuando después del final.
-
-Botón de reinicio: Asegúrate de tener un botón o alguna opción para que el jugador pueda reiniciar el juego sin tener 
-que recargar la página. Esto también debe restablecer el estado del juego y las puntuaciones.
-
-Mostrar la puntuación del jugador y del dealer: Debes agregar una sección o mensaje donde se actualice y muestre la 
-puntuación total del jugador y la del dealer mientras se juega.
-*/
+function doubleBet() {
+    if (currentBet * 2 > playerMoney) {
+        alert("No tienes suficiente dinero para doblar la apuesta.");
+        return;
+    }
+    playerMoney -= currentBet;
+    currentBet *= 2;
+    updateUI();
+}
